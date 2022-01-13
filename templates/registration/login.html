@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <center class="row">
+        <h1><i class="font_color">Wellcome</i></h1>
+    <br><br>
+    </center>
+
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div class="col-md-4 col-lg-offset-4">
+                    <div class="submit_form_login">
+                        <h3 class="font_color">Login</h3>
+                        <form method="post">
+                            {% csrf_token %}
+
+                            <div class="row profile-icon-color">
+
+                                <div class="input-field col m12 s12">
+                                    <i class="material-icons prefix font_color position_button">account_box</i>
+                                    <input type="text" name="username"
+                                           autofocus=""
+                                           autocapitalize="none"
+                                           placeholder="Username"
+                                           maxlength="150" required=""
+                                           id="id_username">
+                                </div>
+
+                                <div class="input-field col m12 s12">
+                                    <i class="material-icons prefix font_color position_button">key</i>
+                                    <input type="password" name="password"
+                                           placeholder="Password"
+                                           required="" id="id_password">
+                                </div>
+                            </div>
+                            <br>
+                            <button class="col m6 offset-m3 s6 offset-s3 btn waves-effect waves-light font_color"
+                                    style="background: #6a828c82;" type="submit">
+                                Login
+                            </button>
+                            <br>
+                            <div class="col-md-5">
+                                <a href="{% url 'account:signup' %}" class="col m6 offset-m3 s6 offset-s3 font_color position_button"
+                                   style="margin-top: 10px;">
+                                    Sign Up
+                                </a>
+                            </div>
+                            <div class="col-md-5">
+                                <a href="" class="col m6 offset-m3 s6 offset-s3 font_color position_button"
+                                   style="margin-top: 10px;">
+                                    Forget password?
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

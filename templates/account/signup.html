@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+    <center class="row">
+        <h1><i class="font_color">Wellcome</i></h1>
+        <br><br>
+    </center>
+
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div class="col-md-4 col-lg-offset-4">
+                    <div class="submit_form_login">
+                        <h4 class="font_color">Sign Up</h4>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="row profile-icon-color">
+                                <div class="input-field col m12 s12">
+                                    <i class="material-icons prefix font_color position_button">account_box</i>
+                                    <input type="text" name="username"
+                                           maxlength="100" autofocus=""
+                                           placeholder="Username"
+                                           required="" id="id_username">
+                                </div>
+
+                                <div class="input-field col m12 s12">
+                                    <i class="material-icons prefix font_color position_button">mail</i>
+                                    <input type="email" name="email" required=""
+                                           id="id_email" placeholder="Email">
+                                </div>
+
+                                <div class="input-field col m12 s12">
+                                    <i class="material-icons prefix font_color position_button">key</i>
+                                    <input type="password" name="password1"
+                                           autocomplete="new-password" required=""
+                                           id="id_password1" placeholder="Password"> <span
+                                        class="helptext"></span>
+                                </div>
+
+                                <div class="input-field col m12 s12">
+                                    <i class="material-icons prefix font_color position_button">key</i>
+                                    <input type="password"
+                                           name="password2"
+                                           autocomplete="new-password"
+                                           required=""
+                                           id="id_password2" placeholder="Password confirmation">
+                                </div>
+
+                                <br>
+                                <button class="col m6 offset-m3 s6 offset-s3 btn waves-effect waves-light font_color"
+                                        style="background: #6a828c82;" type="submit">
+                                    Sign Up
+
+                                </button>
+                                <br>
+                                <div class="col m6 offset-m3 s6 offset-s3 font_color position_button">
+                                    <a href="{% url 'login' %}"
+                                       style="margin-top: 10px;">
+                                        Login
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

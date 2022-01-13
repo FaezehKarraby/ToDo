@@ -1,0 +1,130 @@
+{% load crispy_forms_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>{{ subject }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{% static '/css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <!--style-->
+    <style>
+        .card {
+
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5),
+            0 6px 20px 0 rgba(0, 0, 0, 0.39);
+            background: lightpink;
+            margin-bottom: 5%;
+            border-radius: 25px;
+            padding: 2%;
+            overflow: auto;
+            resize: both;
+            text-overflow: ellipsis;
+        }
+
+        .card:hover {
+            background: lightblue;
+        }
+
+        .submit_form {
+
+            text-align: center;
+            padding: 3%;
+            background: pink;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4),
+            0 6px 20px 0 rgba(0, 0, 0, 0.36);
+        }
+    </style>
+
+</head>
+
+<body class="container-fluid">
+
+<center class="row">
+    <h1><i>__TODO LIST__</i></h1>
+    <hr>
+</center>
+
+<div class="row">
+    <div class="col-md-8 font_color">
+
+        {% for todo in list %}
+            <div class="col-md-6">
+                <div class="card">
+                    <center><b></b></center>
+                    <a href="{% url 'ToDo:todo_details' todo.pk %}">
+                        {{ todo.subject }}
+                        <hr>
+                        date_created: {{ todo.date_created }}
+                        <br>
+                    </a>
+                    {% if todo.status == '1' %}
+                        <i class="material-icons nav-icon" style="font-size: 25px;">cancel</i>
+                    {% elif todo.status == '2' %}
+                        <i class="material-icons nav-icon" style="font-size: 25px;">timelapse</i>
+                    {% elif todo.status == '3' %}
+                        <i class="material-icons nav-icon" style="font-size: 25px;">check_circle</i>
+                    {% endif %}
+                    <br>
+                    <form action="/del/{{ todo.pk }}/" method="POST"
+                          style=" padding-right: 4%; padding-bottom: 3%;">
+                        {% csrf_token %}
+                        <button value="remove" type="submit" class="btn font_color_remove"
+                                style="float: right;"><span
+                                class="glyphicon glyphicon-trash font_color_remove"></span> &nbsp; remove
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-3">
+        <div class="submit_form">
+            <form method="POST">
+                {% csrf_token %}
+                <div id="div_id_subject" class="control-group "><label for="id_subject"
+                                                                       class="control-label requiredField font_color">
+                    Subject<span class="asteriskField font_color font_color">*</span> </label>
+                    <div class="controls"><input type="text" name="subject" maxlength="256" class="textinput textInput"
+                                                 required="" id="id_subject"></div>
+                </div>
+                <div id="div_id_description" class="control-group"><label for="id_description"
+                                                                          class="control-label requiredField font_color">
+                    Description<span class="asteriskField">*</span> </label>
+                    <div class="controls"><textarea name="description" rows="10" class="textarea" required=""
+                                                    id="id_description"></textarea></div>
+                </div>
+                <div class="row">
+                    <div id="div_id_status" class="control-group col-md-6 font_color"><label for="id_status"
+                                                                                             class="control-label requiredField">
+                        Status<span class="asteriskField">*</span> </label>
+                    </div>
+
+                    <div class="font_color_remove controls"><select name="status" class="select" id="id_status">
+                        <option value="1" selected="">undone</option>
+                        <option value="2">doing</option>
+                        <option value="3">done</option>
+                    </select></div>
+                </div>
+                <center>
+                    <input type="submit" class="font_color_remove btn btn-default" value="submit">
+                </center>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

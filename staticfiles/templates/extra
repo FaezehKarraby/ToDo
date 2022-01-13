@@ -1,0 +1,13 @@
+<div class="submit_form">
+      <form method="POST">
+      {% csrf_token %}
+<div id="div_id_subject" class="control-group"> <label for="id_subject" class="control-label requiredField">
+                Subject<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="subject" maxlength="256" class="textinput textInput" required="" id="id_subject"> </div> </div> <div id="div_id_description" class="control-group"> <label for="id_description" class="control-label requiredField">
+                Description<span class="asteriskField">*</span> </label> <div class="controls"> <textarea name="description" cols="40" rows="10" class="textarea" required="" id="id_description"></textarea> </div> </div> <div id="div_id_status" class="control-group"> <label for="id_status" class="control-label requiredField">
+                Status<span class="asteriskField">*</span> </label> <div class="controls"> <select name="status" class="select" id="id_status"> <option value="1" selected="">undone</option> <option value="2">doing</option> <option value="3">done</option>
+</select> </div> </div>
+        <center>
+        <input type="submit" class="btn btn-default" value="submit">
+      </center>
+      </form>
+    </div>

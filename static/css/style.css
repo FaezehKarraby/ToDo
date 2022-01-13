@@ -1,0 +1,85 @@
+body {
+    background: #04293A;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.back_color {
+
+}
+
+.font_color {
+    color: white;
+}
+
+a {
+    color: white;
+}
+
+.font_color_black {
+    color: black;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5),
+    0 6px 20px 0 rgba(0, 0, 0, 0.39);
+    background: #39617382;
+    margin-bottom: 5%;
+    border-radius: 25px;
+    padding: 2%;
+    overflow: auto;
+    resize: both;
+    text-overflow: ellipsis;
+}
+
+.card:hover {
+    background: #28495782;
+}
+
+.submit_form {
+
+    text-align: center;
+    padding: 3%;
+    background: #39617382;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#B9EBDD", endColorstr="#62847C", GradientType=1);
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4),
+    0 6px 20px 0 rgba(0, 0, 0, 0.36);
+}
+
+.margin_card {
+    margin-left: 50px;
+    padding-top: 4px;
+    padding-right: 60px;
+}
+
+.remove_button {
+    float: right;
+    background: #6a828c82;
+    padding-bottom: 4px;
+    margin-top: -24px;
+}
+
+.status {
+    margin-top: 10px;
+}
+
+.position_button {
+    position: relative;
+    left: -5px;
+    bottom: -9px;
+}
+.parallax {
+    max-height: 100px;
+    line-height: 0;
+    height: 250px;
+    color: #444;
+}
+.submit_form_login {
+    text-align: center;
+    padding: 25px;
+    background: #39617382;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#B9EBDD", endColorstr="#62847C", GradientType=1);
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4),
+    0 6px 20px 0 rgba(0, 0, 0, 0.36);
+}

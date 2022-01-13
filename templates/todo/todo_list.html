@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{ user }} / list {% endblock %}
+
+{% block content %}
+    <center class="row">
+        <h1><i class="font_color">TODO LIST</i></h1>
+        <div class="font_color">
+                {{ user }}
+            <div class="col-md-6">
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+        </div>
+        <hr>
+    </center>
+
+    {% if list %}
+        <div class="row">
+            <div class="col-md-7 font_color margin_card">
+                {% for todo in list %}
+                    <div class="">
+                        <div class="card">
+                            <center><b></b></center>
+
+                            <a href="{% url 'ToDo:todo_details' todo.pk %}">
+                                {{ todo.subject }}
+                                <hr>
+                                date_created: {{ todo.date_created }}
+                                <br>
+                            </a>
+                            {% if todo.status == '1' %}
+                                <i class="material-icons nav-icon" style="font-size: 25px;">cancel</i>
+                            {% elif todo.status == '2' %}
+                                <i class="material-icons nav-icon" style="font-size: 25px;">timelapse</i>
+                            {% elif todo.status == '3' %}
+                                <i class="material-icons nav-icon" style="font-size: 25px;">check_circle</i>
+                            {% endif %}
+
+                            <form action="/del/{{ todo.pk }}/" method="POST"
+                                  style=" padding-right: 4%; padding-bottom: 3%;">
+                                {% csrf_token %}
+                                <button value="remove" type="submit" class="btn font_color remove_button"
+                                ><span
+                                        class="glyphicon glyphicon-trash font_color"></span> &nbsp; remove
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-4">
+                <div class="submit_form">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <h3 class="font_color">Add new task</h3>
+                        <div id="div_id_subject" class="control-group "><label for="id_subject"
+                                                                               class="control-label requiredField font_color">
+                            Subject<span class="asteriskField font_color font_color">*</span> </label>
+                            <div class="controls"><input style="background: #6a828c82;" type="text"
+                                                         name="subject" maxlength="256"
+                                                         class="textinput textInput"
+                                                         required="" id="id_subject"></div>
+                        </div>
+                        <div id="div_id_description" class="control-group"><label for="id_description"
+                                                                                  class="control-label requiredField font_color">
+                            Description<span class="asteriskField">*</span> </label>
+                            <div class="controls"><textarea style="background: #6a828c82;"
+                                                            name="description" cols="30" rows="10" class="textarea" required=""
+                                                            id="id_description"></textarea></div>
+                        </div>
+                        <div class="row status">
+                            <div id="div_id_status" class="control-group col-md-6 font_color"><label for="id_status"
+                                                                                                     class="control-label requiredField">
+                                Status<span class="asteriskField">*</span> </label>
+                            </div>
+
+                            <div class="font_color controls"><select name="status"
+                                                                     style="background: #6a828c82;"
+                                                                     class="select" id="id_status">
+                                <option value="1" selected="">undone</option>
+                                <option value="2">doing</option>
+                                <option value="3">done</option>
+                            </select></div>
+                        </div>
+                        <center>
+                            <input type="submit" class="font_color btn btn-default" value="submit"
+                                   style="background: #6a828c82;">
+                        </center>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="col-md-4 col-md-offset-4">
+            <div class="submit_form">
+                <form method="POST">
+                    {% csrf_token %}
+                    <h3 class="font_color">Add new task</h3>
+                    <div id="div_id_subject" class="control-group "><label for="id_subject"
+                                                                           class="control-label requiredField font_color">
+                        Subject<span class="asteriskField font_color font_color">*</span> </label>
+                        <div class="controls"><input style="background: #6a828c82; margin-bottom: 10px;" type="text"
+                                                     name="subject" maxlength="256"
+                                                     class="textinput textInput"
+                                                     required="" id="id_subject"></div>
+                    </div>
+                    <div id="div_id_description" class="control-group"><label for="id_description"
+                                                                              class="control-label requiredField font_color">
+                        Description<span class="asteriskField">*</span> </label>
+                        <div class="controls"><textarea style="background: #6a828c82;"
+                                                        name="description" cols="30" rows="10" class="textarea"
+                                                        required=""
+                                                        id="id_description"></textarea></div>
+                    </div>
+                    <div class="row status">
+                        <div id="div_id_status" class="control-group col-md-6 font_color"><label for="id_status"
+                                                                                                 class="control-label requiredField">
+                            Status<span class="asteriskField">*</span> </label>
+                        </div>
+
+                        <div class="font_color controls"><select name="status"
+                                                                 style="background: #6a828c82;"
+                                                                 class="select" id="id_status">
+                            <option value="1" selected="">undone</option>
+                            <option value="2">doing</option>
+                            <option value="3">done</option>
+                        </select></div>
+                    </div>
+                    <center>
+                        <input type="submit" class="font_color btn btn-default" value="submit"
+                               style="background: #6a828c82;">
+                    </center>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}
