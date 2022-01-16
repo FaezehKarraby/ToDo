@@ -1,15 +1,17 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from todo.forms import TodoForm
 from todo.models import TodoModel
 
 
-def todo_list(request, pk):
-    item_list = TodoModel.objects.order_by("date_created")
+@login_required
+def todo_list(request):
+    item_list = TodoModel.objects.filter(user=request.user)
     if request.method == 'POST':
         form = TodoForm(request.POST)
         if form.is_valid():
-            form.save()
+            form.save(request.user)
             return redirect('ToDo:todo_list')
     form = TodoForm()
     context = {
@@ -18,14 +20,6 @@ def todo_list(request, pk):
         'title': 'TODO LIST',
     }
     return render(request, 'todo/todo_list.html', context)
-
-
-def todo_details(request, pk):
-    item = get_object_or_404(TodoModel, pk=pk)
-    context = {
-        'item': item,
-    }
-    return render(request, 'todo/todo_details.html', context)
 
 
 def remove(request, pk):

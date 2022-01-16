@@ -7,7 +7,7 @@
     <center class="row">
         <h1><i class="font_color">TODO LIST</i></h1>
         <div class="font_color">
-                {{ user }}
+            {{ user }}
             <div class="col-md-6">
                 <a href="{% url 'logout' %}">Logout</a>
             </div>
@@ -23,19 +23,27 @@
                         <div class="card">
                             <center><b></b></center>
 
-                            <a href="{% url 'ToDo:todo_details' todo.pk %}">
-                                {{ todo.subject }}
-                                <hr>
-                                date_created: {{ todo.date_created }}
-                                <br>
-                            </a>
-                            {% if todo.status == '1' %}
-                                <i class="material-icons nav-icon" style="font-size: 25px;">cancel</i>
-                            {% elif todo.status == '2' %}
-                                <i class="material-icons nav-icon" style="font-size: 25px;">timelapse</i>
-                            {% elif todo.status == '3' %}
-                                <i class="material-icons nav-icon" style="font-size: 25px;">check_circle</i>
-                            {% endif %}
+                            {{ todo.subject }}
+                            <hr>
+                            date_created: {{ todo.date_created }}
+                            <br>
+                                <i class="material-icons nav-icon"
+                                   style="font-size: 25px; {% if todo.status == '1' %}color: #041C32; {% endif %}">cancel</i>
+                                <i class="material-icons nav-icon"
+                                   style="font-size: 25px; {% if todo.status == '2' %}color: #041C32; {% endif %}">timelapse</i>
+                                <i class="material-icons nav-icon"
+                                   style="font-size: 25px; {% if todo.status == '3' %}color: #041C32; {% endif %}">check_circle</i>
+                            <br>
+                            <div class="fixed-action-btn toolbar">
+                            </div>
+
+
+                            <div class="fixed-action-btn toolbar">
+                            </div>
+
+                            <div class="tooltiped">Details
+                                <span class="tooltiptext font_color">{{ todo.detail }}</span>
+                            </div>
 
                             <form action="/del/{{ todo.pk }}/" method="POST"
                                   style=" padding-right: 4%; padding-bottom: 3%;">
@@ -69,7 +77,8 @@
                                                                                   class="control-label requiredField font_color">
                             Description<span class="asteriskField">*</span> </label>
                             <div class="controls"><textarea style="background: #6a828c82;"
-                                                            name="description" cols="30" rows="10" class="textarea" required=""
+                                                            name="description" cols="30" rows="10" class="textarea"
+                                                            required=""
                                                             id="id_description"></textarea></div>
                         </div>
                         <div class="row status">
@@ -138,5 +147,15 @@
             </div>
         </div>
     {% endif %}
+{% endblock %}
 
+{% block script %}
+    <script>
+        $(document).ready(function () {
+            $('.tooltipped').tooltip();
+        });
+        $('.tooltip').tooltip('methodName');
+
+        instance.open();
+    </script>
 {% endblock %}

@@ -57,6 +57,8 @@ a {
     background: #6a828c82;
     padding-bottom: 4px;
     margin-top: -24px;
+    position: absolute;
+    right: 96px;
 }
 
 .status {
@@ -68,12 +70,14 @@ a {
     left: -5px;
     bottom: -9px;
 }
+
 .parallax {
     max-height: 100px;
     line-height: 0;
     height: 250px;
     color: #444;
 }
+
 .submit_form_login {
     text-align: center;
     padding: 25px;
@@ -82,4 +86,51 @@ a {
     border-radius: 25px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4),
     0 6px 20px 0 rgba(0, 0, 0, 0.36);
+}
+
+.tooltiped {
+    position: relative;
+    display: inline-block;
+    left: 525px;
+    top: -35px;
+}
+
+/* Tooltip text */
+.tooltiped .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #04293A;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltiped .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: #04293A transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltiped:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }
