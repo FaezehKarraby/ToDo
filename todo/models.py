@@ -1,8 +1,5 @@
-from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.db import models
-
-
 
 
 class TodoModel(models.Model):
@@ -23,4 +20,3 @@ class TodoModel(models.Model):
 
     def detail(self):
         return self.description.replace('\n', '/ ')
-
