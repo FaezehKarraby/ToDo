@@ -38,6 +38,14 @@
                             </div>
 
 
+                        <select onchange="status(this.value);" style="background: #6a828c82;">
+                            <option value="undone">Undone</option>
+                            <option value="Doing">Doing</option>
+                            <option value="done">Done</option>
+                        </select>
+
+
+
                             <div class="fixed-action-btn toolbar">
                             </div>
 
@@ -158,4 +166,5 @@
 
         instance.open();
     </script>
+    <script type="text/javascript" src="{% static 'java/tasks.js' %}"></script>
 {% endblock %}

@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
+from rest_framework.decorators import api_view
 from rest_framework.generics import RetrieveAPIView, ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.permissions import IsAdminUser
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from todo.models import TodoModel
@@ -34,3 +34,17 @@ class UserDetail(RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (IsSuperUser,)
+
+
+@api_view(['GET'])
+def get_todo_by_status(request):
+    status = request.query_params.get('status', None)
+    tasks = TodoModel.objects.all()
+    if status:
+        tasks = tasks.filter(status=status)
+
+    if tasks:
+        serialized = TodoSerializer(tasks, many=True)
+        return Response(serialized.data)
+    else:
+        return Response({'message': 'error'})
