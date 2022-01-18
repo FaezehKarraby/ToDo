@@ -11,3 +11,11 @@ Please refer to api/permission.py
 3.http://127.0.0.1:8000/api/users/
 4.http://127.0.0.1:8000/api/user/<int:pk>/
 5.http://127.0.0.1:8000/api/get_status/?status=1 or 2 or 3
+
+! ragob
+@ at
+$ dolor
+% darsd
+^ power
+& and
+* star
